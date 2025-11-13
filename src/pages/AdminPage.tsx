@@ -10,7 +10,7 @@ import {
 } from "../features/company/companySlice";
 import PreviewPanel from "../components/PreviewPanel";
 import EditorPanel from "../components/EditorPanel";
-import VersionTimeline from "../components/VersionTimeline";
+import VersionTimeline from "../components/preview/VersionTimeline";
 
 const COMPANY_ID = "8b9d08ac-3aae-4314-ae05-096615c71395"; 
 
@@ -45,30 +45,31 @@ export default function AdminPage() {
   if (!draft) return <div className="p-10 text-gray-500">Aucune donnée disponible</div>;
 
   return (
-    <div className="flex h-screen p-8 bg-gray-100 gap-6">
-      <div className="flex-1 p-6 bg-white shadow-lg">
-        <PreviewPanel data={draft} />
-      </div>
-      <div className="w-1/2 bg-white border-l p-8 shadow-lg flex flex-col justify-between">
-        <EditorPanel data={draft} />
-
-        <VersionTimeline companyId={COMPANY_ID} />
-
-        <div className="mt-6 flex gap-3 justify-end">
+    <div className="p-8 bg-gray-100">
+      <div className="mt-6 flex gap-3 justify-end py-4">
           <button
             onClick={handleRevert}
-            className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
+            className="px-4 py-2  hover:bg-black hover:text-white rounded-full border border-black border-1"
           >
-            ↩️ Revenir
+            Revenir à la dernière version sauvegardée (annule les modifications en cours)
           </button>
           <button
             onClick={handleSave}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            className="px-4 py-2 bg-[#E90A5D] text-white rounded-full hover:bg-pink-700"
           >
-            💾 Enregistrer
+            Enregistrer
           </button>
         </div>
-      </div>
+        <div className="flex gap-6 ">
+          <div className="flex-1 p-6 bg-white shadow-lg rounded-lg flex flex-col justify-between">
+            <PreviewPanel data={draft} />
+          </div>
+          <div className="w-1/2 bg-white border-l p-8 shadow-lg flex flex-col justify-between rounded-lg">
+            <EditorPanel data={draft} />
+
+            {/* <VersionTimeline companyId={COMPANY_ID} /> */}
+          </div>
+        </div>
     </div>
   );
 }

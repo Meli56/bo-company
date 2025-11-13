@@ -7,6 +7,8 @@ import {
   getCompanyVersion,
   saveCompanyVersion,
 } from "../../services/companyService";
+import { uploadBanner, deleteBanner } from "../../services/storageService";
+import { Company } from "../../types/company.types";
 
 // Types
 interface Version {
@@ -21,20 +23,6 @@ interface CompanyState {
   versions: Version[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error?: string;
-}
-
-interface CompanyState {
-  data: Company | null;
-  draft: Company | null;
-  status: "idle" | "loading" | "succeeded" | "failed";
-  error?: string;
-}
-export interface Company {
-  id: string;
-  name: string;
-  description: string;
-  color: string;
-  logo?: string;
 }
 
 const initialState: CompanyState = {
@@ -84,6 +72,14 @@ export const restoreCompanyVersion = createAsyncThunk(
   }
 );
 
+// Thunk pour uploader la bannière
+export const uploadCompanyBanner = createAsyncThunk(
+  "company/uploadBanner",
+  async ({ file, companyId }: { file: File; companyId: string }) => {
+    return await uploadBanner(file, companyId);
+  }
+);
+
 /// Reducers + extraReducers
 const companySlice = createSlice({
   name: "company",
@@ -130,6 +126,13 @@ const companySlice = createSlice({
       // Sauvegarde d'une nouvelle version
       .addCase(saveNewVersion.fulfilled, (state, action) => {
         // La nouvelle version sera ajoutée par fetchCompanyVersions
+      })
+      
+      // Upload de bannière
+      .addCase(uploadCompanyBanner.fulfilled, (state, action) => {
+        if (state.draft) {
+          state.draft.banner_url = action.payload;
+        }
       })
       
       // Restauration d'une version

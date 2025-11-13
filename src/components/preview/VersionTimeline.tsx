@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "../app/store";
+import { RootState, AppDispatch } from "../../app/store";
 import {
   fetchCompanyVersions,
   restoreCompanyVersion,
-} from "../features/company/companySlice";
+} from "../../features/company/companySlice";
 import React from "react";
 
 type Props = {
