@@ -58,7 +58,7 @@ export default function BannerUpload({ companyId, currentBannerUrl }: Props) {
           <button
             type="button"
             onClick={handleRemoveBanner}
-            className="absolute top-2 right-2 bg-red-600 text-white py-2 px-3 rounded-md text-sm hover:bg-red-600"
+            className="absolute top-2 right-2 bg-[#df0505] text-white py-2 px-3 rounded-md text-sm hover:bg-[#cc0000]"
           >
             ✕
           </button>

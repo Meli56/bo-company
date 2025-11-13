@@ -105,33 +105,20 @@ export default function KeyFiguresEditor({ data }: KeyFiguresEditorProps) {
             type="text"
             value={data.gender_parity_index || ""}
             onChange={(e) => handleChange("gender_parity_index", e.target.value)}
-            placeholder="Ex: 85/100"
+            placeholder="Ex: 85 / 100"
             className="mt-1 w-full border rounded-md p-2"
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700">
-            % d'hommes
+           Répartition H/F
           </label>
           <input
             type="text"
             value={data.gender_men_percentage || ""}
             onChange={(e) => handleChange("gender_men_percentage", e.target.value)}
-            placeholder="Ex: 60%"
-            className="mt-1 w-full border rounded-md p-2"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            % de femmes
-          </label>
-          <input
-            type="text"
-            value={data.gender_women_percentage || ""}
-            onChange={(e) => handleChange("gender_women_percentage", e.target.value)}
-            placeholder="Ex: 40%"
+            placeholder="Ex: 40% - 60%"
             className="mt-1 w-full border rounded-md p-2"
           />
         </div>

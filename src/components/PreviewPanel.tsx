@@ -1,4 +1,3 @@
-import InfoSection from "./preview/InfoSection";
 import StrengthsSection from "./preview/StrengthsSection";
 import KeyFiguresSection from "./preview/KeyFiguresSection";
 
@@ -48,23 +47,13 @@ export default function PreviewPanel({ data }: PreviewProps) {
         <div className="flex items-start gap-4">
           {/* Nom et statut */}
           <div className="flex-1">
-            <h1 className="text-2xl font-bold text-gray-900">{data.name}</h1>
-            {data.status && (
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-gray-600">{data.status}</span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Ville et employés */}
-        <div className="mt-4 flex items-center gap-4 text-sm text-gray-600">
-          {data.city && (
-            <div className="flex items-center gap-1">
-              <span>📍</span>
-              <span>Mis à jour il y a 2h</span>
+            <h1 className="text-4xl">{data.name}</h1>
+            <div className="flex items-center gap-2 text-sm">
+              {data.city && (<span className="text-gray-600">{data.city}</span>)}
+              {data.city && data.subsector && (<span className="text-gray-600">|</span>)}
+              {data.subsector && (<span className="text-gray-600">{data.subsector}</span>)}
             </div>
-          )}
+          </div>
         </div>
       </div>
 
@@ -76,11 +65,6 @@ export default function PreviewPanel({ data }: PreviewProps) {
       {/* Chiffres clés */}
       <div className="mb-6">
         <KeyFiguresSection data={data} />
-      </div>
-
-      {/* Informations générales */}
-      <div className="mb-6">
-        <InfoSection data={data} />
       </div>
     </div>
   );

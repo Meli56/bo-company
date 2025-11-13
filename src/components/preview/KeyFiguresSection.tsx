@@ -1,4 +1,5 @@
 import { KeyFigures } from "../../types";
+import KeyFiguresEditor from "../editor/KeyFiguresEditor";
 
 type KeyFiguresSectionProps = {
   data: KeyFigures;
@@ -30,12 +31,14 @@ export default function KeyFiguresSection({ data }: KeyFiguresSectionProps) {
     {
       icon: "📊",
       label: "Ancienneté moyenne",
+      suffix: "ans",
       value: data.avg_seniority,
     },
     {
       icon: "🎂",
       label: "Moyenne d'âge",
       value: data.avg_age,
+      suffix: "ans",
     },
     {
       icon: "⚖️",
@@ -49,29 +52,31 @@ export default function KeyFiguresSection({ data }: KeyFiguresSectionProps) {
     },
   ];
 
-  const validFigures = figures.filter(f => f.value && f.value.trim() !== "");
+  // const validFigures = figures.filter(f => f.value && f.value.trim() !== "");
 
-  if (validFigures.length === 0) return null;
+  if (figures.length === 0) return null;
 
   return (
-    <div>
-      <h2 className="text-3xl font-semibold text-gray-800 mb-4">Qui sommes-nous ?</h2>
-
+    <div className="mb-12">
+      <h2 className="text-4xl mb-6">Qui sommes-nous ?</h2>
       <div className="grid grid-cols-3 gap-4">
-        {validFigures.map((figure, index) => (
-          <div key={index} className="bg-blue-100 rounded-lg p-4">
-            <div className="text-2xl mb-2">{figure.icon}</div>
-            <div className="text-sm text-gray-600 mb-1">{figure.label}</div>
-            <div className="text-lg font-bold text-gray-900">
-              {figure.value}
-              {figure.suffix && (
-                <div className="text-xs font-normal text-gray-600 mt-1">
-                  {figure.suffix}
+        {figures.map((figure, index) => {
+          const classes = figure.value != "" ? "bg-blue-100" : "bg-white border border-blue-100 border-2 opacity-60";
+          return (
+            <div key={index} className={classes + " rounded-lg p-4"}>
+              <div className="text-2xl mb-2">{figure.icon}</div>
+              <div className="text-sm mb-2">{figure.label}</div>
+              {figure.value ? (
+                <div className="text-sm font-bold">
+                  {figure.value}
+                  {figure.suffix && ` ${figure.suffix}`}
                 </div>
+              ) : (
+                <div className="w-28 rounded-3xl h-2 bg-gray-200"></div>
               )}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
