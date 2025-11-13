@@ -1,76 +1,71 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "../app/store";
+import {
+  fetchCompany,
+  saveCompanyData,
+  revertDraft,
+  saveNewVersion,
+  fetchCompanyVersions,
+} from "../features/company/companySlice";
 import PreviewPanel from "../components/PreviewPanel";
 import EditorPanel from "../components/EditorPanel";
+import VersionTimeline from "../components/VersionTimeline";
+
+const COMPANY_ID = "8b9d08ac-3aae-4314-ae05-096615c71395"; 
 
 export default function AdminPage() {
-  const [savedData, setSavedData] = useState(() => {
-    const stored = localStorage.getItem("companyData");
-    return stored
-        ? JSON.parse(stored)
-        : {
-            name: "Ma Super Entreprise",
-            description: "Nous faisons des choses incroyables !",
-            color: "#2563eb",
-            logo: "", // 👈 ajout du logo
-        };
-    });
+  const dispatch = useDispatch<AppDispatch>();
+  const { draft, status } = useSelector((state: RootState) => state.company);
 
-
-  const [draftData, setDraftData] = useState(savedData);
-
-  // 🔄 Sauvegarde automatique du brouillon (facultatif)
   useEffect(() => {
-    const draft = localStorage.getItem("companyDraft");
-    if (draft) {
-        setDraftData(JSON.parse(draft));
-    }
-  }, []);
+    dispatch(fetchCompany(COMPANY_ID));
+  }, [dispatch]);
 
-  // ✅ Fonctions de gestion
-  const handleSave = () => {
-    setSavedData(draftData);
-    localStorage.setItem("companyData", JSON.stringify(draftData));
-    alert("✅ Données enregistrées !");
+  const handleSave = async () => {
+    if (draft) {
+      try {
+        await dispatch(saveCompanyData(draft)).unwrap();
+        await dispatch(saveNewVersion(draft)).unwrap();
+        // Recharge les versions après sauvegarde
+        await dispatch(fetchCompanyVersions(COMPANY_ID)).unwrap();
+        alert("✅ Données et version enregistrées avec succès !");
+      } catch (error) {
+        console.error("Erreur lors de la sauvegarde:", error);
+        alert("❌ Erreur lors de la sauvegarde: " + (error as Error).message);
+      }
+    }
   };
 
   const handleRevert = () => {
-    setDraftData(savedData);
-    alert("↩️ Revenu à la dernière version enregistrée !");
+    dispatch(revertDraft());
   };
 
-  return (
-    <div className="flex h-screen">
-      {/* Preview */}
-      <div className="flex-1 bg-gray-50 p-8">
-        <PreviewPanel data={draftData} />
-      </div>
+  if (status === "loading") return <div className="p-10 text-gray-500">Chargement...</div>;
+  if (!draft) return <div className="p-10 text-gray-500">Aucune donnée disponible</div>;
 
-      {/* Éditeur */}
-      <div className="w-2/5 bg-white border-l p-8 shadow-lg flex flex-col justify-between">
-        <EditorPanel data={draftData} setData={setDraftData} />
+  return (
+    <div className="flex h-screen p-8 bg-gray-100 gap-6">
+      <div className="flex-1 p-6 bg-white shadow-lg">
+        <PreviewPanel data={draft} />
+      </div>
+      <div className="w-1/2 bg-white border-l p-8 shadow-lg flex flex-col justify-between">
+        <EditorPanel data={draft} />
+
+        <VersionTimeline companyId={COMPANY_ID} />
 
         <div className="mt-6 flex gap-3 justify-end">
           <button
             onClick={handleRevert}
             className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
           >
-            Revenir à l'état enregistré
+            ↩️ Revenir
           </button>
-
-          <button
-            onClick={() => {
-                localStorage.setItem("companyDraft", JSON.stringify(draftData));
-                alert("📝 Brouillon sauvegardé !");
-            }}
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-            >
-            Sauvegarder en tant que brouillon 
-            </button>
           <button
             onClick={handleSave}
-            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
-            Enregistrer
+            💾 Enregistrer
           </button>
         </div>
       </div>
