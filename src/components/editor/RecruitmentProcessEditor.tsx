@@ -45,8 +45,8 @@ export default function RecruitmentProcessEditor({ data }: RecruitmentProcessEdi
   };
 
   return (
-    <div className="border-t pt-4 mt-4">
-      <h3 className="text-xl font-semibold mb-4">🎯 Processus de recrutement</h3>
+    <div className="border-t py-12 px-8">
+      <h3 className="text-xl font-semibold mb-4">Processus de recrutement</h3>
       <p className="text-sm text-gray-600 mb-4">
         Expliquez clairement vos étapes de recrutement. Un parcours limpide rassure et engage les candidats. (2 étapes min - 6 étapes max)
       </p>

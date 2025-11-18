@@ -28,7 +28,7 @@ export default function AdvantagesPreview({ data }: AdvantagesPreviewProps) {
   return (
     <div className="mt-12">
       <h2 className="text-3xl mb-6">Raisons de nous rejoindre</h2>
-      <div className="flex flex-wrap gap-4 p-4 bg-blue-50 rounded-lg">
+      <div className="flex flex-wrap gap-4 p-4 bg-blue-50 rounded-lg w-fit">
         {Object.entries(advantagesByCategory).map(([category, advantages]) =>
             advantages.map((advantage: string, index: number) => (
                 <span

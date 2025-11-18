@@ -22,8 +22,8 @@ export default function Section3Editor({ data }: Section3EditorProps) {
   };
 
   return (
-    <div className="border-t pt-4 mt-4">
-      <h3 className="text-xl font-semibold mb-4">⭐ Section 3</h3>
+    <div className="border-t py-12 px-8">
+      <h3 className="text-xl font-semibold mb-4">Section 3</h3>
 
       {/* Titre */}
       <div className="mb-4">

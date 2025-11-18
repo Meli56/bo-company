@@ -61,7 +61,7 @@ export default function PresentationEditor({ data }: PresentationEditorProps) {
   ];
 
   return (
-    <div className="border-t pt-4 mt-4">
+    <div className="border-t py-12 px-8">
       <h3 className="text-xl font-semibold mb-4">Présentation</h3>
       <div>
         <textarea

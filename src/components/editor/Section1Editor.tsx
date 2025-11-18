@@ -68,8 +68,8 @@ export default function Section1Editor({ data }: Section1EditorProps) {
   };
 
   return (
-    <div className="border-t pt-4 mt-4">
-      <h3 className="text-xl font-semibold mb-4">📢 Section 1</h3>
+    <div className="border-t py-12 px-8">
+      <h3 className="text-xl font-semibold mb-4">Section 1</h3>
       <p className="text-sm text-gray-600 mb-4">
         Profitez de cette section pour mettre en avant les valeurs de votre entreprise, la vie aux bureaux
       </p>
@@ -106,24 +106,24 @@ export default function Section1Editor({ data }: Section1EditorProps) {
       </div>
 
       {/* Vidéos */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          🎥 Vidéos
+      <div className="border-t pt-12">
+        <label text-xl font-semibold>
+          Vidéos
         </label>
-        <p className="text-xs text-gray-500 mb-3">
+        <p className="text-xs text-gray-500 mb-3 mt-4">
           Faites passer vos messages en images. Une vidéo dynamique capte l'attention et renforce l'authenticité de votre marque employeur. (4 max.)
         </p>
 
-        <div className="space-y-3">
+        <div className="space-y-6">
           {(data.section1Videos || []).map((video, index) => (
-            <div key={index} className="border rounded-md p-3 bg-gray-50">
-              <div className="flex items-start gap-2">
-                <div className="flex flex-col gap-1">
+            <div key={index} >
+              <div className="flex items-center gap-4">
+                <div className="flex flex-col gap-1 text-xl">
                   <button
                     type="button"
                     onClick={() => handleVideoReorder(index, 'up')}
                     disabled={index === 0}
-                    className="text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                    className="disabled:opacity-30"
                   >
                     ↑
                   </button>
@@ -131,7 +131,7 @@ export default function Section1Editor({ data }: Section1EditorProps) {
                     type="button"
                     onClick={() => handleVideoReorder(index, 'down')}
                     disabled={index === (data.section1Videos?.length || 0) - 1}
-                    className="text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                    className="disabled:opacity-30"
                   >
                     ↓
                   </button>
@@ -155,7 +155,7 @@ export default function Section1Editor({ data }: Section1EditorProps) {
           <button
             type="button"
             onClick={handleVideoAdd}
-            className="mt-3 text-sm text-blue-600 hover:text-blue-800"
+            className="mt-3 text-sm hover:text-gray-600"
           >
             + Ajouter des vidéos
           </button>

@@ -53,8 +53,7 @@ export default function VideoUpload({
         <div className="relative border rounded-md p-2 bg-white">
           <div className="flex items-center gap-2">
             <div className="flex-1 text-sm">
-              <div className="font-medium">🎥 {videoName || 'Vidéo'}</div>
-              <div className="text-xs text-gray-500">{videoUrl}</div>
+              <div className="font-medium">{videoName || 'Vidéo'}</div>
             </div>
             <div className="flex gap-2">
               <button
@@ -67,9 +66,9 @@ export default function VideoUpload({
               <button
                 type="button"
                 onClick={onRemove}
-                className="text-red-500 hover:text-red-700 text-xs px-2 py-1"
+              className="text-red-500 hover:text-white border rounded-full px-2.5 py-1 hover:border-red-500 hover:bg-red-500"
               >
-                🗑️
+                X
               </button>
             </div>
           </div>

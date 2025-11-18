@@ -64,23 +64,23 @@ export default function AdvantagesEditor({ data }: AdvantagesEditorProps) {
   };
 
   return (
-    <div className="border-t pt-4 mt-4">
-      <h3 className="text-xl font-semibold mb-4">⭐ Avantages</h3>
+    <div className="border-t py-12 px-8">
+      <h3 className="text-xl font-semibold mb-4">Avantages</h3>
       <p className="text-sm text-gray-600 mb-4">
         Valorisez ce que vous offrez à vos équipes. Les bénéfices concrets font souvent la différence. (60 max.)
       </p>
 
       <div className="space-y-3">
         {(data.advantages || []).map((advantage, index) => (
-          <div key={index} className="border rounded-md p-3 bg-gray-50">
-            <div className="flex items-start gap-2">
+          <div key={index} className="p-3">
+            <div className="flex items-center gap-2">
               {/* Boutons de réorganisation */}
               <div className="flex flex-col gap-1">
                 <button
                   type="button"
                   onClick={() => handleAdvantageReorder(index, 'up')}
                   disabled={index === 0}
-                  className="text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                  className="disabled:opacity-30"
                 >
                   ↑
                 </button>
@@ -88,7 +88,7 @@ export default function AdvantagesEditor({ data }: AdvantagesEditorProps) {
                   type="button"
                   onClick={() => handleAdvantageReorder(index, 'down')}
                   disabled={index === (data.advantages?.length || 0) - 1}
-                  className="text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                  className="disabled:opacity-30"
                 >
                   ↓
                 </button>
@@ -96,19 +96,19 @@ export default function AdvantagesEditor({ data }: AdvantagesEditorProps) {
 
               {/* Icône de la catégorie */}
               <div className="text-3xl">
-                {categoryIcons[advantage.category] || '📋'}
+                
               </div>
 
               {/* Contenu */}
-              <div className="flex-1 space-y-2">
+              <div className="flex w-full items-center gap-4">
                 <select
                   value={advantage.category}
                   onChange={(e) => handleAdvantageChange(index, 'category', e.target.value)}
-                  className="w-full border rounded-md p-2 text-sm"
+                  className="w-1/3 border rounded-lg px-4 py-1 text-sm bg-white"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>
-                      {cat}
+                      {categoryIcons[cat] || '📋'} {cat}
                     </option>
                   ))}
                 </select>
@@ -117,21 +117,18 @@ export default function AdvantagesEditor({ data }: AdvantagesEditorProps) {
                   value={advantage.advantage_text}
                   onChange={(e) => handleAdvantageChange(index, 'advantage_text', e.target.value)}
                   placeholder="Ex: Prime de participation aux bénéfices"
-                  className="w-full border rounded-md p-2 text-sm"
+                  className="w-full border rounded-lg px-4 py-1 text-sm"
                   maxLength={100}
                 />
-                <div className="text-right text-xs text-gray-500">
-                  {advantage.advantage_text.length}/100 caractères
-                </div>
               </div>
 
               {/* Bouton supprimer */}
               <button
                 type="button"
                 onClick={() => handleAdvantageRemove(index)}
-                className="text-red-500 hover:text-red-700"
+              className="text-red-500 hover:text-white border rounded-full px-2.5 py-1 hover:border-red-500 hover:bg-red-500"
               >
-                🗑️
+               X
               </button>
             </div>
           </div>

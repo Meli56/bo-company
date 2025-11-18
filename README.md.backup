@@ -28,7 +28,7 @@ Cette application permet aux administrateurs de créer, modifier et prévisualis
 - **Row-Level Security (RLS)** pour la sécurité des données
 
 ### Structure des données
-\`\`\`
+```
 companies (table principale)
 ├── business_info (informations métier)
 ├── corporate_structure (structure corporate)
@@ -41,7 +41,7 @@ companies (table principale)
 ├── company_advantages (avantages catégorisés)
 ├── recruitment_process (étapes de recrutement)
 └── legal_info (informations légales)
-\`\`\`
+```
 
 ## 📦 Installation
 
@@ -53,34 +53,34 @@ companies (table principale)
 ### Étapes
 
 1. **Cloner le repository**
-\`\`\`bash
+```bash
 git clone https://github.com/Meli56/bo-company.git
 cd bo-company
-\`\`\`
+```
 
 2. **Installer les dépendances**
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 3. **Configurer Supabase**
 
-Créez un fichier \`.env.local\` à la racine :
-\`\`\`env
+Créez un fichier `.env.local` à la racine :
+```env
 REACT_APP_SUPABASE_URL=votre_url_supabase
 REACT_APP_SUPABASE_ANON_KEY=votre_cle_anon
-\`\`\`
+```
 
 4. **Créer la base de données**
 
 Exécutez les scripts SQL dans Supabase SQL Editor :
-- \`NEW_SECTIONS_SCHEMA.sql\` - Création des tables
-- \`SUPABASE_STORAGE_SETUP.sql\` - Configuration du storage
+- `NEW_SECTIONS_SCHEMA.sql` - Création des tables
+- `SUPABASE_STORAGE_SETUP.sql` - Configuration du storage
 
 5. **Démarrer l'application**
-\`\`\`bash
+```bash
 npm start
-\`\`\`
+```
 
 L'application sera accessible sur [http://localhost:3000](http://localhost:3000)
 
@@ -118,111 +118,46 @@ L'application sera accessible sur [http://localhost:3000](http://localhost:3000)
 - Timeline des modifications
 - Restauration de versions antérieures
 
-## 📝 Scripts disponibles
+## Available Scripts
 
-### \`npm start\`
-Lance l'application en mode développement sur [http://localhost:3000](http://localhost:3000)
+In the project directory, you can run:
 
-### \`npm run build\`
-Compile l'application pour la production dans le dossier \`build/\`
+### `npm start`
 
-### \`npm test\`
-Lance les tests en mode interactif
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## 🔧 Configuration Supabase
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-### 1. Créer les tables
-Exécutez \`NEW_SECTIONS_SCHEMA.sql\` dans le SQL Editor
+### `npm test`
 
-### 2. Configurer le Storage
-Créez le bucket \`company-media\` (PUBLIC) et exécutez \`SUPABASE_STORAGE_SETUP.sql\`
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### 3. Politiques RLS
-Les politiques permettent :
-- Upload pour utilisateurs authentifiés
-- Lecture publique des fichiers
-- Suppression/modification pour utilisateurs authentifiés
+### `npm run build`
 
-Voir \`SUPABASE_STORAGE_SETUP.sql\` pour les détails
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## 📚 Documentation complémentaire
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-- \`NOUVELLES_SECTIONS_README.md\` - Guide des nouvelles sections
-- \`UPLOAD_FILES_GUIDE.md\` - Guide d'upload de fichiers
-- \`SUPABASE_STORAGE_SETUP.sql\` - Configuration Storage
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## 🏛️ Structure du projet
+### `npm run eject`
 
-\`\`\`
-src/
-├── app/
-│   └── store.ts                    # Configuration Redux
-├── components/
-│   ├── EditorPanel.tsx            # Panel d'édition principal
-│   ├── PreviewPanel.tsx           # Panel de prévisualisation
-│   ├── editor/                    # Composants d'édition
-│   │   ├── BasicInfoEditor.tsx
-│   │   ├── KeyFiguresEditor.tsx
-│   │   ├── Section1Editor.tsx
-│   │   ├── Section2Editor.tsx
-│   │   ├── AdvantagesEditor.tsx
-│   │   └── ...
-│   └── preview/                   # Composants de preview
-│       ├── BannerUpload.tsx
-│       ├── VideoUpload.tsx
-│       ├── PhotoUpload.tsx
-│       └── ...
-├── features/
-│   └── company/
-│       └── companySlice.ts        # State management
-├── services/
-│   ├── companyService.ts          # API Supabase
-│   └── storageService.ts          # Upload fichiers
-├── types/
-│   ├── company.types.ts           # Types TypeScript
-│   └── index.ts
-└── pages/
-    └── AdminPage.tsx              # Page principale
-\`\`\`
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## 🐛 Résolution de problèmes
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-### Erreur RLS sur upload
-\`\`\`
-StorageApiError: new row violates row-level security policy
-\`\`\`
-**Solution** : Exécutez \`SUPABASE_STORAGE_SETUP.sql\` pour créer les politiques RLS
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-### Les données ne se chargent pas
-- Vérifiez la connexion Supabase dans \`.env.local\`
-- Vérifiez que les tables existent dans Supabase
-- Consultez la console du navigateur pour les erreurs
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-### Build échoue
-\`\`\`bash
-npm run build
-\`\`\`
-Vérifiez les erreurs TypeScript et corrigez-les
+## Learn More
 
-## 🤝 Contribution
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-1. Fork le projet
-2. Créez une branche (\`git checkout -b feature/nouvelle-fonctionnalite\`)
-3. Committez vos changements (\`git commit -m 'Ajout nouvelle fonctionnalité'\`)
-4. Push vers la branche (\`git push origin feature/nouvelle-fonctionnalite\`)
-5. Ouvrez une Pull Request
-
-## 📄 Licence
-
-Ce projet est privé et propriétaire.
-
-## 👥 Auteurs
-
-- Équipe BO Company
-
-## 🔗 Liens utiles
-
-- [Documentation Supabase](https://supabase.com/docs)
-- [Documentation React](https://react.dev)
-- [Documentation Redux Toolkit](https://redux-toolkit.js.org)
-- [Documentation Tailwind CSS](https://tailwindcss.com)
+To learn React, check out the [React documentation](https://reactjs.org/).
+# bo-company

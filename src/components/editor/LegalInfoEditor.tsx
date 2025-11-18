@@ -20,8 +20,8 @@ export default function LegalInfoEditor({ data }: LegalInfoEditorProps) {
   };
 
   return (
-    <div className="border-t pt-4 mt-4">
-      <h3 className="text-xl font-semibold mb-4">⚖️ Infos légales</h3>
+    <div className="border-t py-12 px-8">
+      <h3 className="text-xl font-semibold mb-4">Infos légales</h3>
       <p className="text-sm text-gray-600 mb-4">
         Ces informations ne seront pas visibles par les candidats
       </p>

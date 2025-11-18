@@ -68,8 +68,8 @@ export default function Section2Editor({ data }: Section2EditorProps) {
   };
 
   return (
-    <div className="border-t pt-4 mt-4">
-      <h3 className="text-xl font-semibold mb-4">📸 Section 2</h3>
+    <div className="border-t pt-12 px-8">
+      <h3 className="text-xl font-semibold mb-4">Section 2</h3>
 
       {/* Titre */}
       <div className="mb-4">
@@ -103,24 +103,23 @@ export default function Section2Editor({ data }: Section2EditorProps) {
       </div>
 
       {/* Photos */}
-      <div className="mb-4">
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          📷 Photos
+      <div className="border-t py-12">
+        <label className="text-xl font-semibold">
+          Photos
         </label>
-        <p className="text-xs text-gray-500 mb-3">
+        <p className="text-xs text-gray-500 mb-3 mt-4">
           Montrez l'envers du décor. Des visuels concrets aident les candidats à se projeter dans vos locaux et votre ambiance de travail. (25 max.) (format : 300 × 200 px)
         </p>
 
         <div className="flex gap-6 flex-col">
           {(data.section2Photos || []).map((photo, index) => (
-            <div key={index} className="flex gap-4">
-              <div className="flex items-start gap-2 mb-2">
-                <div className="flex gap-1">
+            <div key={index} className="flex gap-4 items-center">
+              <div className="flex flex-col gap-1 text-xl">
                   <button
                     type="button"
                     onClick={() => handlePhotoReorder(index, 'up')}
                     disabled={index === 0}
-                    className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-xs"
+                    className="disabled:opacity-30"
                   >
                     ↑
                   </button>
@@ -128,12 +127,10 @@ export default function Section2Editor({ data }: Section2EditorProps) {
                     type="button"
                     onClick={() => handlePhotoReorder(index, 'down')}
                     disabled={index === (data.section2Photos?.length || 0) - 1}
-                    className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-xs"
+                    className="disabled:opacity-30"
                   >
                     ↓
                   </button>
-                </div>
-                <span className="text-xs text-gray-500">#{index + 1}</span>
               </div>
 
               <PhotoUpload
@@ -151,7 +148,7 @@ export default function Section2Editor({ data }: Section2EditorProps) {
           <button
             type="button"
             onClick={handlePhotoAdd}
-            className="mt-3 text-sm"
+            className="mt-3 text-sm hover:text-gray-600"
           >
             + Ajouter des photos
           </button>

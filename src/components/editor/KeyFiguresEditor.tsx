@@ -15,7 +15,7 @@ export default function KeyFiguresEditor({ data }: KeyFiguresEditorProps) {
   };
 
   return (
-    <div className="border-t pt-4 mt-4">
+    <div className="border-t py-12 px-8">
       <h3 className="text-xl font-semibold mb-4">Chiffres clés</h3>
       <div className="grid grid-cols-2 gap-4">
         <div>

@@ -48,7 +48,7 @@ export default function PhotoUpload({
   };
 
   return (
-    <div className="flex justify-between gap-4 w-full">
+    <div className="flex justify-between gap-4 w-full items-center">
       {photoUrl ? (
         <>
           <img
@@ -56,18 +56,21 @@ export default function PhotoUpload({
             alt={photoName || 'Photo'}
             className="w-auto h-24 object-cover"
           />
+          <div className="flex-1 text-sm">
+              <div className="font-medium">{photoName || 'Photo'}</div>
+            </div>
           <div className="flex gap-2 h-fit">
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="bg-white/90 hover:bg-white text-xs px-2 py-1 rounded-full border"
+              className="bg-white/90 text-xs px-2 py-1 rounded-full border hover:bg-black hover:text-white hover:border-black"
             >
               Modifier
             </button>
             <button
               type="button"
               onClick={onRemove}
-              className="bg-white/90 hover:bg-white text-red-500 text-xs px-2 py-1 rounded-full border"
+              className="text-red-500 hover:text-white border rounded-full px-2.5 py-1 hover:border-red-500 hover:bg-red-500"
             >
               X
             </button>

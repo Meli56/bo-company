@@ -15,7 +15,8 @@ export default function BasicInfoEditor({ data }: BasicInfoEditorProps) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 px-8">
+      <h3 className="text-xl font-semibold mb-4">Informations générales</h3>
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Ville / Siège social

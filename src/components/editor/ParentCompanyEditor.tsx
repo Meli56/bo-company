@@ -15,7 +15,7 @@ export default function ParentCompanyEditor({ data }: ParentCompanyEditorProps) 
   };
 
   return (
-    <div className="space-y-4">
+    <div className="px-8 pb-12 mt-4">
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Appartient au groupe
@@ -29,7 +29,7 @@ export default function ParentCompanyEditor({ data }: ParentCompanyEditorProps) 
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
+        <label className="block text-sm font-medium text-gray-700 mt-4">
           Entreprise parente
         </label>
         <input

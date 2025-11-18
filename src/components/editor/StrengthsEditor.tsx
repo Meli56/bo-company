@@ -16,8 +16,8 @@ export default function StrengthsEditor({ strengths }: StrengthsEditorProps) {
   };
 
   return (
-    <div>
-      <h3 className="text-3xl mb-2">
+    <div className="border-t py-12 px-8">
+      <h3 className="text-xl font-semibold mb-4">
         Aviz
       </h3>
       <p>Renforcez votre marque employeur et inspirez confiance aux candidats. Aviz vous permet de mettre en avant des témoignages de vos collaborateurs.</p>

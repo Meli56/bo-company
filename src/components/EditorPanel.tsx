@@ -16,27 +16,19 @@ export default function EditorPanel({ data }: { data: any }) {
     <div className="space-y-6">
       <BannerUpload companyId={data.id} currentBannerUrl={data.banner_url} />
 
-      <BasicInfoEditor data={data} />
-
-      <ParentCompanyEditor data={data} />
-
-      <StrengthsEditor strengths={data.strengths} />
-
-      <KeyFiguresEditor data={data} />
-
-      <PresentationEditor data={data} />
-
-      <Section1Editor data={data} />
-
-      <Section2Editor data={data} />
-
-      <Section3Editor data={data} />
-
-      <AdvantagesEditor data={data} />
-
-      <RecruitmentProcessEditor data={data} />
-
-      <LegalInfoEditor data={data} />
+      <div className="border pt-12 rounded-lg">
+        <BasicInfoEditor data={data} />
+        <ParentCompanyEditor data={data} />
+        <StrengthsEditor strengths={data.strengths} />
+        <KeyFiguresEditor data={data} />
+        <PresentationEditor data={data} />
+        <Section1Editor data={data} />
+        <Section2Editor data={data} />
+        <Section3Editor data={data} />
+        <AdvantagesEditor data={data} />
+        <RecruitmentProcessEditor data={data} />
+        <LegalInfoEditor data={data} />
+      </div>
     </div>
   );
 }
