@@ -64,7 +64,7 @@ export default function AdminPage() {
           <div className="flex-1 p-6 bg-white shadow-lg rounded-lg flex flex-col justify-between">
             <PreviewPanel data={draft} />
           </div>
-          <div className="w-1/2 bg-white border-l p-8 shadow-lg flex flex-col justify-between rounded-lg">
+          <div className="w-1/2 bg-white border-l p-6 shadow-lg flex flex-col justify-between rounded-lg">
             <EditorPanel data={draft} />
 
             {/* <VersionTimeline companyId={COMPANY_ID} /> */}

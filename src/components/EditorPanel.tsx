@@ -3,6 +3,7 @@ import BasicInfoEditor from "./editor/BasicInfoEditor";
 import ParentCompanyEditor from "./editor/ParentCompanyEditor";
 import StrengthsEditor from "./editor/StrengthsEditor";
 import KeyFiguresEditor from "./editor/KeyFiguresEditor";
+import PresentationEditor from "./editor/PresentationEditor";
 
 export default function EditorPanel({ data }: { data: any }) {
   return (
@@ -16,6 +17,8 @@ export default function EditorPanel({ data }: { data: any }) {
       <StrengthsEditor strengths={data.strengths} />
 
       <KeyFiguresEditor data={data} />
+
+      <PresentationEditor data={data} />
     </div>
   );
 }

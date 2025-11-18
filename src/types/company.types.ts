@@ -57,7 +57,16 @@ export interface KeyFigures {
   gender_men_percentage?: string;
   gender_women_percentage?: string;
 }
-
+/**
+ * Présentation de l'entreprise
+ */
+export interface Presentation {
+  description: string;
+  labelsRse: string[];
+  labelsRh: string[];
+  socialNetworks: string[];
+  reactivityTime: string;
+}
 /**
  * Interface complète de l'entreprise combinant tous les types
  */

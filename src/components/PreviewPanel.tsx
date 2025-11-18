@@ -1,5 +1,6 @@
 import StrengthsSection from "./preview/StrengthsSection";
 import KeyFiguresSection from "./preview/KeyFiguresSection";
+import PresentationSection from "./preview/PresentationSection";
 
 type PreviewProps = {
   data: {
@@ -25,6 +26,9 @@ type PreviewProps = {
     gender_parity_index?: string;
     gender_men_percentage?: string;
     gender_women_percentage?: string;
+    labelsRse?: string[];
+    labelsRh?: string[];
+    socialNetworks?: string[];
   };
 };
 
@@ -65,6 +69,11 @@ export default function PreviewPanel({ data }: PreviewProps) {
       {/* Chiffres clés */}
       <div className="mb-6">
         <KeyFiguresSection data={data} />
+      </div>
+
+      {/* Présentation */}
+      <div className="mb-6">
+        <PresentationSection data={data} />
       </div>
     </div>
   );
