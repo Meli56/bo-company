@@ -16,7 +16,6 @@ export default function KeyFiguresSection({ data }: KeyFiguresSectionProps) {
       icon: "€",
       label: "Chiffre d'affaires",
       value: data.revenue,
-      suffix: "d'euros",
     },
     {
       icon: "💰",
@@ -31,14 +30,12 @@ export default function KeyFiguresSection({ data }: KeyFiguresSectionProps) {
     {
       icon: "📊",
       label: "Ancienneté moyenne",
-      suffix: "ans",
       value: data.avg_seniority,
     },
     {
       icon: "🎂",
       label: "Moyenne d'âge",
       value: data.avg_age,
-      suffix: "ans",
     },
     {
       icon: "⚖️",
@@ -69,7 +66,6 @@ export default function KeyFiguresSection({ data }: KeyFiguresSectionProps) {
               {figure.value ? (
                 <div className="text-sm font-bold">
                   {figure.value}
-                  {figure.suffix && ` ${figure.suffix}`}
                 </div>
               ) : (
                 <div className="w-28 rounded-3xl h-2 bg-gray-200"></div>

@@ -1,10 +1,7 @@
+import { Company } from "../../types/company.types";
+
 type PresentationSectionProps = {
-  data: {
-    description?: string;
-    labelsRse?: string[];
-    labelsRh?: string[];
-    socialNetworks?: string[];
-  };
+  data: Company;
 };
 
 export default function PresentationSection({ data }: PresentationSectionProps) {
@@ -35,7 +32,7 @@ export default function PresentationSection({ data }: PresentationSectionProps) 
       
 
         {/* Labels RSE */}
-        <h3 className="text-sm font-medium text-gray-700 flex gap-2 place-items-baseline">Nos labels RSE : 
+        <h3 className="text-sm font-medium text-gray-700 flex gap-2 place-items-baseline">Nos labels RSE : &nbsp;
             {labelsRse && labelsRse.length > 0 ? (
                 labelsRse.join(', ')
             ) : (
@@ -44,7 +41,7 @@ export default function PresentationSection({ data }: PresentationSectionProps) 
         </h3>
 
       {/* Labels RH */}
-        <h3 className="text-sm font-medium text-gray-700 flex gap-2 place-items-baseline">Nos labels RH : 
+        <h3 className="text-sm font-medium text-gray-700 flex gap-2 place-items-baseline">Nos labels RH : &nbsp;
             {labelsRh && labelsRh.length > 0 ? (
                 labelsRh.join(', ')
             ) : (

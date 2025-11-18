@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { updateDraft } from "../../features/company/companySlice";
 import { AppDispatch } from "../../app/store";
-import { Presentation } from "../../types/company.types";
+import { Company } from "../../types/company.types";
 
 type PresentationEditorProps = {
-  data: Presentation;
+  data: Company;
 };
 
 export default function PresentationEditor({ data }: PresentationEditorProps) {
@@ -51,6 +51,14 @@ export default function PresentationEditor({ data }: PresentationEditorProps) {
     updatedNetworks[index] = value;
     handleChange("socialNetworks", updatedNetworks);
   };
+
+  const socialNetworks = [
+    { name: 'Facebook', icon: 'F', color: 'text-blue-600', placeholder: 'Lien Facebook' },
+    { name: 'Twitter', icon: '𝕏', color: 'text-black font-bold', placeholder: 'Lien Twitter' },
+    { name: 'YouTube', icon: '▶', color: 'text-red-600', placeholder: 'Lien Youtube' },
+    { name: 'Instagram', icon: '📱', color: 'text-pink-600', placeholder: 'Lien Instagram' },
+    { name: 'TikTok', icon: '♪', color: 'text-black', placeholder: 'Lien Tiktok' },
+  ];
 
   return (
     <div className="border-t pt-4 mt-4">
@@ -178,65 +186,18 @@ export default function PresentationEditor({ data }: PresentationEditorProps) {
           Réseaux sociaux
         </label>
         <div className="space-y-2">
-          {/* Facebook */}
-          <div className="flex items-center gap-2">
-            <span className="text-blue-600">F</span>
-            <input
-              type="text"
-              placeholder="Lien Facebook"
-              value={data.socialNetworks?.[0] || ""}
-              onChange={(e) => handleSocialNetworkChange(0, e.target.value)}
-              className="flex-1 border rounded-md p-2 text-gray-400"
-            />
-          </div>
-
-          {/* Twitter */}
-          <div className="flex items-center gap-2">
-            <span className="text-black font-bold">𝕏</span>
-            <input
-              type="text"
-              placeholder="Lien Twitter"
-              value={data.socialNetworks?.[1] || ""}
-              onChange={(e) => handleSocialNetworkChange(1, e.target.value)}
-              className="flex-1 border rounded-md p-2 text-gray-400"
-            />
-          </div>
-
-          {/* YouTube */}
-          <div className="flex items-center gap-2">
-            <span className="text-red-600">▶</span>
-            <input
-              type="text"
-              placeholder="Lien Youtube"
-              value={data.socialNetworks?.[2] || ""}
-              onChange={(e) => handleSocialNetworkChange(2, e.target.value)}
-              className="flex-1 border rounded-md p-2 text-gray-400"
-            />
-          </div>
-
-          {/* Instagram */}
-          <div className="flex items-center gap-2">
-            <span className="text-pink-600">📱</span>
-            <input
-              type="text"
-              placeholder="Lien Instagram"
-              value={data.socialNetworks?.[3] || ""}
-              onChange={(e) => handleSocialNetworkChange(3, e.target.value)}
-              className="flex-1 border rounded-md p-2"
-            />
-          </div>
-
-          {/* TikTok */}
-          <div className="flex items-center gap-2">
-            <span className="text-black">♪</span>
-            <input
-              type="text"
-              placeholder="Lien Tiktok"
-              value={data.socialNetworks?.[4] || ""}
-              onChange={(e) => handleSocialNetworkChange(4, e.target.value)}
-              className="flex-1 border rounded-md p-2 text-gray-400"
-            />
-          </div>
+          {socialNetworks.map((network, index) => (
+            <div key={network.name} className="flex items-center gap-2">
+              <span className={network.color}>{network.icon}</span>
+              <input
+                type="text"
+                placeholder={network.placeholder}
+                value={data.socialNetworks?.[index] || ""}
+                onChange={(e) => handleSocialNetworkChange(index, e.target.value)}
+                className="flex-1 border rounded-md p-2 text-gray-400"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

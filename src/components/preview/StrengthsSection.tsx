@@ -9,7 +9,7 @@ export default function StrengthsSection() {
         Les salariés dévoilent 
         <span className="font-bold">les points forts de l'entreprise</span>
       </h3>
-      <div className="flex gap-3 flex-wrap">
+      <div className="flex gap-3 flex-wrap h-[60px]">
         {Array.from({ length: 7 }).map((_, i) => {
           const randomWidth = Math.floor(Math.random() * (200 - 80 + 1)) + 80;
           return (

@@ -10,9 +10,8 @@ import {
 } from "../features/company/companySlice";
 import PreviewPanel from "../components/PreviewPanel";
 import EditorPanel from "../components/EditorPanel";
-import VersionTimeline from "../components/preview/VersionTimeline";
 
-const COMPANY_ID = "8b9d08ac-3aae-4314-ae05-096615c71395"; 
+const COMPANY_ID = "f1ef1c6f-aea7-4ded-a294-b08abe85f0a0"; 
 
 export default function AdminPage() {
   const dispatch = useDispatch<AppDispatch>();

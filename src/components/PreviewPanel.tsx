@@ -1,35 +1,10 @@
 import StrengthsSection from "./preview/StrengthsSection";
 import KeyFiguresSection from "./preview/KeyFiguresSection";
 import PresentationSection from "./preview/PresentationSection";
+import { Company } from "../types/company.types";
 
 type PreviewProps = {
-  data: {
-    name: string;
-    description: string;
-    color: string;
-    logo?: string;
-    banner_url?: string;
-    city?: string;
-    employees?: string;
-    sector?: string;
-    subsector?: string;
-    parent_group?: string;
-    parent_company?: string;
-    strengths?: string[];
-    status?: string;
-    foundation_year?: string;
-    revenue?: string;
-    salaries?: string;
-    salary_policy?: string;
-    avg_seniority?: string;
-    avg_age?: string;
-    gender_parity_index?: string;
-    gender_men_percentage?: string;
-    gender_women_percentage?: string;
-    labelsRse?: string[];
-    labelsRh?: string[];
-    socialNetworks?: string[];
-  };
+  data: Company;
 };
 
 export default function PreviewPanel({ data }: PreviewProps) {
