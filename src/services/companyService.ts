@@ -1,5 +1,13 @@
 import { supabase } from "../lib/supabaseClient";
-import { Company, CompanyData, BusinessInfo, CorporateStructure, KeyFigures, Presentation, Strength } from "../types/company.types";
+import { 
+  Company, 
+  CompanySection, 
+  SectionVideo, 
+  SectionPhoto,
+  CompanyAdvantage,
+  RecruitmentStep,
+  LegalInfo
+} from "../types/company.types";
 
 /**
  * Récupère toutes les données d'une entreprise depuis les tables normalisées
@@ -49,6 +57,48 @@ export async function getCompany(id: string): Promise<Company> {
     .eq("company_id", id)
     .order("display_order", { ascending: true });
 
+  // 7. Récupérer les sections
+  const { data: sections } = await supabase
+    .from("company_sections")
+    .select("*")
+    .eq("company_id", id)
+    .order("section_number", { ascending: true });
+
+  // 8. Récupérer les vidéos (Section 1)
+  const { data: videos } = await supabase
+    .from("section_videos")
+    .select("*")
+    .eq("company_id", id)
+    .order("display_order", { ascending: true });
+
+  // 9. Récupérer les photos (Section 2)
+  const { data: photos } = await supabase
+    .from("section_photos")
+    .select("*")
+    .eq("company_id", id)
+    .order("display_order", { ascending: true });
+
+  // 10. Récupérer les avantages
+  const { data: advantages } = await supabase
+    .from("company_advantages")
+    .select("*")
+    .eq("company_id", id)
+    .order("display_order", { ascending: true });
+
+  // 11. Récupérer le processus de recrutement
+  const { data: recruitmentSteps } = await supabase
+    .from("recruitment_process")
+    .select("*")
+    .eq("company_id", id)
+    .order("display_order", { ascending: true });
+
+  // 12. Récupérer les infos légales
+  const { data: legalInfo } = await supabase
+    .from("legal_info")
+    .select("*")
+    .eq("company_id", id)
+    .maybeSingle();
+
   // Combiner toutes les données dans un objet Company plat
   return {
     ...company,
@@ -72,6 +122,14 @@ export async function getCompany(id: string): Promise<Company> {
     socialNetworks: presentation?.social_networks,
     reactivityTime: presentation?.reactivity_time,
     strengths: strengths?.map(s => s.strength) || [],
+    section1: sections?.find(s => s.section_number === 1),
+    section1Videos: videos || [],
+    section2: sections?.find(s => s.section_number === 2),
+    section2Photos: photos || [],
+    section3: sections?.find(s => s.section_number === 3),
+    advantages: advantages || [],
+    recruitmentSteps: recruitmentSteps || [],
+    legalInfo: legalInfo || undefined,
   };
 }
 
@@ -193,6 +251,146 @@ export async function saveCompany(company: Company) {
       .insert(strengthsData);
     
     if (strengthsError) throw strengthsError;
+  }
+
+  // 7. Sauvegarder Section 1
+  if (company.section1) {
+    const { error: section1Error } = await supabase
+      .from("company_sections")
+      .upsert({
+        company_id: id,
+        section_number: 1,
+        title: company.section1.title,
+        description: company.section1.description,
+        updated_at: new Date().toISOString(),
+      }, {
+        onConflict: 'company_id,section_number'
+      });
+    
+    if (section1Error) throw section1Error;
+  }
+
+  // 8. Sauvegarder les vidéos de Section 1
+  if (company.section1Videos && company.section1Videos.length > 0) {
+    await supabase.from("section_videos").delete().eq("company_id", id);
+    
+    const videosData = company.section1Videos.map((video, index) => ({
+      company_id: id,
+      video_url: video.video_url,
+      video_name: video.video_name,
+      display_order: index,
+    }));
+
+    const { error: videosError } = await supabase
+      .from("section_videos")
+      .insert(videosData);
+    
+    if (videosError) throw videosError;
+  }
+
+  // 9. Sauvegarder Section 2
+  if (company.section2) {
+    const { error: section2Error } = await supabase
+      .from("company_sections")
+      .upsert({
+        company_id: id,
+        section_number: 2,
+        title: company.section2.title,
+        description: company.section2.description,
+        updated_at: new Date().toISOString(),
+      }, {
+        onConflict: 'company_id,section_number'
+      });
+    
+    if (section2Error) throw section2Error;
+  }
+
+  // 10. Sauvegarder les photos de Section 2
+  if (company.section2Photos && company.section2Photos.length > 0) {
+    await supabase.from("section_photos").delete().eq("company_id", id);
+    
+    const photosData = company.section2Photos.map((photo, index) => ({
+      company_id: id,
+      photo_url: photo.photo_url,
+      photo_name: photo.photo_name,
+      display_order: index,
+    }));
+
+    const { error: photosError } = await supabase
+      .from("section_photos")
+      .insert(photosData);
+    
+    if (photosError) throw photosError;
+  }
+
+  // 11. Sauvegarder Section 3
+  if (company.section3) {
+    const { error: section3Error } = await supabase
+      .from("company_sections")
+      .upsert({
+        company_id: id,
+        section_number: 3,
+        title: company.section3.title,
+        description: company.section3.description,
+        updated_at: new Date().toISOString(),
+      }, {
+        onConflict: 'company_id,section_number'
+      });
+    
+    if (section3Error) throw section3Error;
+  }
+
+  // 12. Sauvegarder les avantages
+  if (company.advantages && company.advantages.length > 0) {
+    await supabase.from("company_advantages").delete().eq("company_id", id);
+    
+    const advantagesData = company.advantages.map((adv, index) => ({
+      company_id: id,
+      category: adv.category,
+      advantage_text: adv.advantage_text,
+      display_order: index,
+    }));
+
+    const { error: advantagesError } = await supabase
+      .from("company_advantages")
+      .insert(advantagesData);
+    
+    if (advantagesError) throw advantagesError;
+  }
+
+  // 13. Sauvegarder le processus de recrutement
+  if (company.recruitmentSteps && company.recruitmentSteps.length > 0) {
+    await supabase.from("recruitment_process").delete().eq("company_id", id);
+    
+    const stepsData = company.recruitmentSteps.map((step, index) => ({
+      company_id: id,
+      step_description: step.step_description,
+      display_order: index,
+    }));
+
+    const { error: stepsError } = await supabase
+      .from("recruitment_process")
+      .insert(stepsData);
+    
+    if (stepsError) throw stepsError;
+  }
+
+  // 14. Sauvegarder les infos légales
+  if (company.legalInfo) {
+    const { error: legalError } = await supabase
+      .from("legal_info")
+      .upsert({
+        company_id: id,
+        raison_sociale: company.legalInfo.raison_sociale,
+        code_naf: company.legalInfo.code_naf,
+        siret: company.legalInfo.siret,
+        siren: company.legalInfo.siren,
+        updated_at: new Date().toISOString(),
+      }, {
+        onConflict: 'company_id'
+      });
+    
+    if (legalError) throw legalError;
   }
 }
 

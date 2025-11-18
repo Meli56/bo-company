@@ -11,8 +11,8 @@ export default function PresentationSection({ data }: PresentationSectionProps) 
   const activeSocialNetworks = (socialNetworks || []).filter(link => link && link.trim() !== '');
 
   return (
-    <div className="bg-white rounded-lg p-6 shadow-sm border flex flex-col gap-4">
-      <h2 className="text-2xl font-semibold mb-4">Présentation</h2>
+    <div className="flex flex-col gap-4">
+      <h2 className="text-3xl mb-4">Présentation</h2>
       
       {/* Description */}
       <div>

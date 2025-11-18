@@ -1,6 +1,9 @@
 import StrengthsSection from "./preview/StrengthsSection";
 import KeyFiguresSection from "./preview/KeyFiguresSection";
 import PresentationSection from "./preview/PresentationSection";
+import CompanySectionsPreview from "./preview/CompanySectionsPreview";
+import AdvantagesPreview from "./preview/AdvantagesPreview";
+import RecruitmentProcessPreview from "./preview/RecruitmentProcessPreview";
 import { Company } from "../types/company.types";
 
 type PreviewProps = {
@@ -20,9 +23,8 @@ export default function PreviewPanel({ data }: PreviewProps) {
           />
         </div>
       )}
-
-      {/* En-tête avec logo et nom */}
-      <div className="mb-6">
+      <div className="px-6">
+        {/* En-tête avec logo et nom */}
         <div className="flex items-start gap-4">
           {/* Nom et statut */}
           <div className="flex-1">
@@ -34,21 +36,23 @@ export default function PreviewPanel({ data }: PreviewProps) {
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Points forts */}
-      <div className="mb-6">
+        {/* Points forts */}
         <StrengthsSection />
-      </div>
 
-      {/* Chiffres clés */}
-      <div className="mb-6">
+        {/* Chiffres clés */}
         <KeyFiguresSection data={data} />
-      </div>
-
-      {/* Présentation */}
-      <div className="mb-6">
+        {/* Présentation */}
         <PresentationSection data={data} />
+
+        {/* Sections 1, 2, 3 */}
+        <CompanySectionsPreview data={data} />
+
+        {/* Avantages */}
+        <AdvantagesPreview data={data} />
+
+        {/* Processus de recrutement */}
+        <RecruitmentProcessPreview data={data} />
       </div>
     </div>
   );

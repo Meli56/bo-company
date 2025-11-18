@@ -60,7 +60,7 @@ export default function AdminPage() {
           </button>
         </div>
         <div className="flex gap-6 ">
-          <div className="flex-1 p-6 bg-white shadow-lg rounded-lg flex flex-col justify-between">
+          <div className="flex-1 p-6 bg-white shadow-lg rounded-lg flex flex-col justify-between h-fit">
             <PreviewPanel data={draft} />
           </div>
           <div className="w-1/2 bg-white border-l p-6 shadow-lg flex flex-col justify-between rounded-lg">

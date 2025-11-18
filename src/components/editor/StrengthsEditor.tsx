@@ -17,7 +17,7 @@ export default function StrengthsEditor({ strengths }: StrengthsEditorProps) {
 
   return (
     <div>
-      <h3 className="text-2xl mb-2">
+      <h3 className="text-3xl mb-2">
         Aviz
       </h3>
       <p>Renforcez votre marque employeur et inspirez confiance aux candidats. Aviz vous permet de mettre en avant des témoignages de vos collaborateurs.</p>
