@@ -47,6 +47,11 @@ Thumbs.db
 # Optional eslint cache
 .eslintcache
 
+# Local files
+react
+react.pub
+README.md.backup
+
 # React specific
 .cache/
 
