@@ -10,8 +10,9 @@ import Section3Editor from "./editor/Section3Editor";
 import AdvantagesEditor from "./editor/AdvantagesEditor";
 import RecruitmentProcessEditor from "./editor/RecruitmentProcessEditor";
 import LegalInfoEditor from "./editor/LegalInfoEditor";
+import { Company } from "../types";
 
-export default function EditorPanel({ data }: { data: any }) {
+export default function EditorPanel({ data }: { data: Company }) {
   return (
     <div className="space-y-6">
       <BannerUpload companyId={data.id} currentBannerUrl={data.banner_url} />

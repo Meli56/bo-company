@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../app/store";
+import toast from 'react-hot-toast';
 import {
   fetchCompany,
   saveCompanyData,
@@ -28,10 +29,16 @@ export default function AdminPage() {
         await dispatch(saveNewVersion(draft)).unwrap();
         // Recharge les versions après sauvegarde
         await dispatch(fetchCompanyVersions(COMPANY_ID)).unwrap();
-        alert("✅ Données et version enregistrées avec succès !");
+        toast.success('Données et version enregistrées avec succès !', {
+          duration: 4000,
+          position: 'top-right',
+        });
       } catch (error) {
         console.error("Erreur lors de la sauvegarde:", error);
-        alert("❌ Erreur lors de la sauvegarde: " + (error as Error).message);
+        toast.error('Erreur lors de la sauvegarde: ' + (error as Error).message, {
+          duration: 5000,
+          position: 'top-right',
+        });
       }
     }
   };

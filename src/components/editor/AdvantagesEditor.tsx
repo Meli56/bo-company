@@ -70,7 +70,7 @@ export default function AdvantagesEditor({ data }: AdvantagesEditorProps) {
         Valorisez ce que vous offrez à vos équipes. Les bénéfices concrets font souvent la différence. (60 max.)
       </p>
 
-      <div className="space-y-3">
+      <div className="">
         {(data.advantages || []).map((advantage, index) => (
           <div key={index} className="p-3">
             <div className="flex items-center gap-2">
@@ -92,11 +92,6 @@ export default function AdvantagesEditor({ data }: AdvantagesEditorProps) {
                 >
                   ↓
                 </button>
-              </div>
-
-              {/* Icône de la catégorie */}
-              <div className="text-3xl">
-                
               </div>
 
               {/* Contenu */}

@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { uploadPhoto } from "../../services/storageService";
+import toast from 'react-hot-toast';
 
 type PhotoUploadProps = {
   companyId: string;
@@ -25,13 +26,13 @@ export default function PhotoUpload({
 
     // Vérification du type de fichier
     if (!file.type.startsWith('image/')) {
-      alert('Veuillez sélectionner une image');
+      toast.error('Veuillez sélectionner une image');
       return;
     }
 
     // Vérification de la taille (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
-      alert('L\'image ne doit pas dépasser 5MB');
+      toast.error('L\'image ne doit pas dépasser 5MB');
       return;
     }
 
@@ -41,7 +42,7 @@ export default function PhotoUpload({
       onUploadComplete(url, file.name);
     } catch (error) {
       console.error('Erreur upload:', error);
-      alert('Erreur lors de l\'upload de la photo');
+      toast.error('Erreur lors de l\'upload de la photo');
     } finally {
       setUploading(false);
     }

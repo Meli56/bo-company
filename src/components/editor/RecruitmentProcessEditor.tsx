@@ -63,15 +63,15 @@ export default function RecruitmentProcessEditor({ data }: RecruitmentProcessEdi
 
       <div className="space-y-3">
         {(data.recruitmentSteps || []).map((step, index) => (
-          <div key={index} className="border rounded-md p-3 bg-gray-50">
-            <div className="flex items-start gap-2">
+          <div key={index} className=" p-3 ">
+            <div className="flex items-center gap-4">
               {/* Boutons de réorganisation */}
               <div className="flex flex-col gap-1">
                 <button
                   type="button"
                   onClick={() => handleStepReorder(index, 'up')}
                   disabled={index === 0}
-                  className="text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                  className="disabled:opacity-30"
                 >
                   ↑
                 </button>
@@ -79,15 +79,15 @@ export default function RecruitmentProcessEditor({ data }: RecruitmentProcessEdi
                   type="button"
                   onClick={() => handleStepReorder(index, 'down')}
                   disabled={index === (data.recruitmentSteps?.length || 0) - 1}
-                  className="text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                  className="disabled:opacity-30"
                 >
                   ↓
                 </button>
               </div>
 
               {/* Numéro de l'étape */}
-              <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm">
-                {index + 1}
+              <div className="text-sm">
+                {index + 1}.
               </div>
 
               {/* Contenu */}
@@ -100,19 +100,19 @@ export default function RecruitmentProcessEditor({ data }: RecruitmentProcessEdi
                   rows={2}
                   maxLength={200}
                 />
-                <div className="text-right text-xs text-gray-500 mt-1">
-                  {step.step_description.length}/200 caractères
-                </div>
               </div>
 
               {/* Bouton supprimer */}
               <button
                 type="button"
                 onClick={() => handleStepRemove(index)}
-                className="text-red-500 hover:text-red-700"
+              className="text-red-500 hover:text-white border rounded-full px-2.5 py-1 hover:border-red-500 hover:bg-red-500"
               >
-                🗑️
+               X
               </button>
+            </div>
+            <div className="text-right text-xs text-gray-500 mt-1 mr-[6%]">
+              {step.step_description.length}/200 caractères
             </div>
           </div>
         ))}

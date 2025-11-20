@@ -10,29 +10,18 @@ export default function RecruitmentProcessPreview({ data }: RecruitmentProcessPr
   return (
     <div className="mt-12">
       <h2 className="text-3xl mb-4">Notre processus de recrutement</h2>
-      <p className="text-sm text-gray-600 mb-6">
-        Expliquez clairement vos étapes de recrutement. Un parcours limpide rassure et engage les candidats. (2 étapes min - 6 étapes max)
-      </p>
 
-      <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 mb-6 flex items-start gap-3">
-        <span className="text-yellow-600 text-3xl">⚠️</span>
-        <div className="text-sm text-yellow-800">
-          <strong>Rassurez les candidats dès le départ</strong>
-          <p className="mt-1">
-            90% des candidats souhaitent connaître le processus de recrutement pour postuler
-          </p>
-        </div>
-      </div>
-
-      <div className="space-y-4">
+      <div className="bg-purple-50 rounded-lg p-6 space-y-4">
         {data.recruitmentSteps.map((step, index) => (
-          <div key={index} className="flex items-start gap-4">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-blue-600 text-white font-bold shrink-0">
-              {index + 1}
+          <div key={index} className="flex items-start gap-3 relative">
+            <div className="absolute left-[3px] top-4 -bottom-6 w-[2px] bg-purple-400"></div>
+            <div className="flex gap-2 ">
+              <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+              <div className="flex-1">
+                <p className="text-gray-800">{step.step_description}</p>
+              </div>
             </div>
-            <div className="flex-1 pt-1">
-              <p className="text-gray-700">{step.step_description}</p>
-            </div>
+            
           </div>
         ))}
       </div>

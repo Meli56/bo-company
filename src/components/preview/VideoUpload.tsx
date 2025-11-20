@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { uploadVideo } from "../../services/storageService";
+import toast from 'react-hot-toast';
 
 type VideoUploadProps = {
   companyId: string;
@@ -25,13 +26,13 @@ export default function VideoUpload({
 
     // Vérification du type de fichier
     if (!file.type.startsWith('video/')) {
-      alert('Veuillez sélectionner une vidéo');
+      toast.error('Veuillez sélectionner une vidéo');
       return;
     }
 
     // Vérification de la taille (max 100MB)
     if (file.size > 100 * 1024 * 1024) {
-      alert('La vidéo ne doit pas dépasser 100MB');
+      toast.error('La vidéo ne doit pas dépasser 100MB');
       return;
     }
 
@@ -41,7 +42,7 @@ export default function VideoUpload({
       onUploadComplete(url, file.name);
     } catch (error) {
       console.error('Erreur upload:', error);
-      alert('Erreur lors de l\'upload de la vidéo');
+      toast.error('Erreur lors de l\'upload de la vidéo');
     } finally {
       setUploading(false);
     }
