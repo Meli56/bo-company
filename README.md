@@ -28,7 +28,7 @@ Cette application permet aux administrateurs de créer, modifier et prévisualis
 - **Row-Level Security (RLS)** pour la sécurité des données
 
 ### Structure des données
-\`\`\`
+```
 companies (table principale)
 ├── business_info (informations métier)
 ├── corporate_structure (structure corporate)
@@ -41,7 +41,7 @@ companies (table principale)
 ├── company_advantages (avantages catégorisés)
 ├── recruitment_process (étapes de recrutement)
 └── legal_info (informations légales)
-\`\`\`
+```
 
 ## 📦 Installation
 
@@ -53,34 +53,34 @@ companies (table principale)
 ### Étapes
 
 1. **Cloner le repository**
-\`\`\`bash
+```bash
 git clone https://github.com/Meli56/bo-company.git
 cd bo-company
-\`\`\`
+```
 
 2. **Installer les dépendances**
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 3. **Configurer Supabase**
 
-Créez un fichier \`.env.local\` à la racine :
-\`\`\`env
+Créez un fichier `.env.local` à la racine :
+```env
 REACT_APP_SUPABASE_URL=votre_url_supabase
 REACT_APP_SUPABASE_ANON_KEY=votre_cle_anon
-\`\`\`
+```
 
 4. **Créer la base de données**
 
 Exécutez les scripts SQL dans Supabase SQL Editor :
-- \`NEW_SECTIONS_SCHEMA.sql\` - Création des tables
-- \`SUPABASE_STORAGE_SETUP.sql\` - Configuration du storage
+- `NEW_SECTIONS_SCHEMA.sql` - Création des tables
+- `SUPABASE_STORAGE_SETUP.sql` - Configuration du storage
 
 5. **Démarrer l'application**
-\`\`\`bash
+```bash
 npm start
-\`\`\`
+```
 
 L'application sera accessible sur [http://localhost:3000](http://localhost:3000)
 
@@ -120,22 +120,22 @@ L'application sera accessible sur [http://localhost:3000](http://localhost:3000)
 
 ## 📝 Scripts disponibles
 
-### \`npm start\`
+### `npm start`
 Lance l'application en mode développement sur [http://localhost:3000](http://localhost:3000)
 
-### \`npm run build\`
-Compile l'application pour la production dans le dossier \`build/\`
+### `npm run build`
+Compile l'application pour la production dans le dossier `build/`
 
-### \`npm test\`
+### `npm test`
 Lance les tests en mode interactif
 
 ## 🔧 Configuration Supabase
 
 ### 1. Créer les tables
-Exécutez \`NEW_SECTIONS_SCHEMA.sql\` dans le SQL Editor
+Exécutez `NEW_SECTIONS_SCHEMA.sql` dans le SQL Editor
 
 ### 2. Configurer le Storage
-Créez le bucket \`company-media\` (PUBLIC) et exécutez \`SUPABASE_STORAGE_SETUP.sql\`
+Créez le bucket `company-media` (PUBLIC) et exécutez `SUPABASE_STORAGE_SETUP.sql`
 
 ### 3. Politiques RLS
 Les politiques permettent :
@@ -143,17 +143,17 @@ Les politiques permettent :
 - Lecture publique des fichiers
 - Suppression/modification pour utilisateurs authentifiés
 
-Voir \`SUPABASE_STORAGE_SETUP.sql\` pour les détails
+Voir `SUPABASE_STORAGE_SETUP.sql` pour les détails
 
 ## 📚 Documentation complémentaire
 
-- \`NOUVELLES_SECTIONS_README.md\` - Guide des nouvelles sections
-- \`UPLOAD_FILES_GUIDE.md\` - Guide d'upload de fichiers
-- \`SUPABASE_STORAGE_SETUP.sql\` - Configuration Storage
+- `NOUVELLES_SECTIONS_README.md` - Guide des nouvelles sections
+- `UPLOAD_FILES_GUIDE.md` - Guide d'upload de fichiers
+- `SUPABASE_STORAGE_SETUP.sql` - Configuration Storage
 
 ## 🏛️ Structure du projet
 
-\`\`\`
+```
 src/
 ├── app/
 │   └── store.ts                    # Configuration Redux
@@ -183,33 +183,33 @@ src/
 │   └── index.ts
 └── pages/
     └── AdminPage.tsx              # Page principale
-\`\`\`
+```
 
 ## 🐛 Résolution de problèmes
 
 ### Erreur RLS sur upload
-\`\`\`
+```
 StorageApiError: new row violates row-level security policy
-\`\`\`
-**Solution** : Exécutez \`SUPABASE_STORAGE_SETUP.sql\` pour créer les politiques RLS
+```
+**Solution** : Exécutez `SUPABASE_STORAGE_SETUP.sql` pour créer les politiques RLS
 
 ### Les données ne se chargent pas
-- Vérifiez la connexion Supabase dans \`.env.local\`
+- Vérifiez la connexion Supabase dans `.env.local`
 - Vérifiez que les tables existent dans Supabase
 - Consultez la console du navigateur pour les erreurs
 
 ### Build échoue
-\`\`\`bash
+```bash
 npm run build
-\`\`\`
+```
 Vérifiez les erreurs TypeScript et corrigez-les
 
 ## 🤝 Contribution
 
 1. Fork le projet
-2. Créez une branche (\`git checkout -b feature/nouvelle-fonctionnalite\`)
-3. Committez vos changements (\`git commit -m 'Ajout nouvelle fonctionnalité'\`)
-4. Push vers la branche (\`git push origin feature/nouvelle-fonctionnalite\`)
+2. Créez une branche (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout nouvelle fonctionnalité'`)
+4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
 5. Ouvrez une Pull Request
 
 ## 📄 Licence
