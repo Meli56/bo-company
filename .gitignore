@@ -1,59 +1,46 @@
-# Dependencies
-node_modules/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
 /.pnp
 .pnp.js
 
-# Testing
+# testing
 /coverage
 
-# Production
+# production
 /build
-/dist
 
-# Misc
+# misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
-.env
 
-# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
+
+# IDE
+/.vscode
+/.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
 *.log
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-# OS files
-Thumbs.db
+# Jest
+/coverage
+/.nyc_output
 
 # TypeScript
 *.tsbuildinfo
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Local files
-react
-react.pub
-README.md.backup
-
-# React specific
-.cache/
-
-# Debug
-debug.log

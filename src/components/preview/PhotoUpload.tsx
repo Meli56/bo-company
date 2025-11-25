@@ -49,7 +49,7 @@ export default function PhotoUpload({
   };
 
   return (
-    <div className="flex justify-between gap-4 w-full items-center">
+    <div className="flex flex-wrap justify-between gap-4 w-full items-center">
       {photoUrl ? (
         <>
           <img
